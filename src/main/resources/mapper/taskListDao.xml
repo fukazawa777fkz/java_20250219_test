@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.studyapp.dao.TaskListDao">
+
+    <resultMap id="TaskInfo" type="com.example.studyapp.entity.TaskEntity">
+        <result property = "taskId" column = "task_id"/>
+        <result property = "taskTitle" column = "task_title"/>
+        <result property = "userId" column = "user_id"/>
+        <result property = "taskDescription" column = "task_description"/>
+        <result property = "taskDeadline" column = "task_deadline"/>
+        <result property = "taskStatus" column = "task_status"/>
+        <result property = "createdAt" column = "created_at"/>
+        <result property = "deleteFlg" column = "delete_flg"/>
+    </resultMap>
+
+    <select id="findAllTaskByUserId" resultMap="TaskInfo">
+        SELECT *
+        FROM task_info
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

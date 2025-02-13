@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ToDoApp</title>
+    <link rel="stylesheet" th:href="@{/css/taskList.css}">
+</head>
+
+<body>
+    <div align="center">
+        <h1 th:if="${userEntity != null}" th:text="${userEntity.userName} + ' さんのToDoリスト'"></h1>
+        <h2 th:if="${Msg}" th:text="${Msg}" style="color: red;"></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>タイトル</th>
+                    <th>内容</th>
+                    <th>期限</th>
+                    <th>状態</th>
+                </tr>
+            </thead>
+            <tbody th:if="${taskList != null}">
+                <tr th:each="task : ${taskList}">
+                    <td>
+                        <div style="display: inline-block;">
+                            <form th:action="@{/task/edit/{id}(id=${task.taskId})}" method="get">
+                                <input type="submit" value="編集">
+                            </form>
+                        </div>
+                        <div style="display: inline-block;">
+                            <form th:action="@{/task/delete/{id}(id=${task.taskId})}" method="post">
+                                <input type="submit" value="削除">
+                            </form>
+                        </div>
+                    </td>
+                    <td th:text="${task.taskTitle}"></td>
+                    <td th:text="${task.taskDescription}"></td>
+                    <td th:text="${task.taskDeadline}"></td>
+                    <td th:text="${task.taskStatus}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
