@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <classPathEntry location="C:\Users\mfuka\.m2\repository\mysql\mysql-connector-java\8.0.25\mysql-connector-java-8.0.25.jar"/>
+  <context id="local" targetRuntime="MyBatis3">
+
+    <!-- スキーマ情報を取得する DB への接続設定 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/studyapp?useSSL=false&amp;nullCatalogMeansCurrent=true"
+        userId="root"
+        password="root">
+    </jdbcConnection>
+
+    <!-- entity -->
+    <javaModelGenerator 
+        targetPackage="com.example.studyapp.entity_gen" 
+        targetProject="src\main\java">
+        <property name="enableSubPackages" value="true" />
+        <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <!-- xml -->
+    <sqlMapGenerator 
+        targetPackage="resources.mapper_gen" 
+        targetProject="src\main">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <!-- if -->
+    <javaClientGenerator 
+        type="XMLMAPPER" 
+        targetPackage="com.example.studyapp.mapper_gen" 
+        targetProject="src\main\java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <!-- コードを生成するテーブルを指定 -->
+    <table schema="studyapp" tableName="task_info">
+      <property name="useActualColumnNames" value="true" />
+    </table>
+    <table schema="studyapp" tableName="user_info">
+      <property name="useActualColumnNames" value="true" />
+    </table>
+
+  </context>
+</generatorConfiguration>
