@@ -36,10 +36,10 @@
 
     <!-- コードを生成するテーブルを指定 -->
     <table schema="studyapp" tableName="task_info">
-      <property name="useActualColumnNames" value="true" />
+      <property name="useActualColumnNames" value="false" />
     </table>
     <table schema="studyapp" tableName="user_info">
-      <property name="useActualColumnNames" value="true" />
+      <property name="useActualColumnNames" value="false" />
     </table>
 
   </context>
