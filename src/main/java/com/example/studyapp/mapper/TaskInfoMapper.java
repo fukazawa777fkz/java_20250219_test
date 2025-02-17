@@ -1,4 +1,4 @@
-package com.example.studyapp.mapper_gen;
+package com.example.studyapp.mapper;
 
 import com.example.studyapp.entity_gen.TaskInfo;
 import com.example.studyapp.entity_gen.TaskInfoExample;

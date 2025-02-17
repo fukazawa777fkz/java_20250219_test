@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.studyapp.mapper_gen.TaskInfoMapper">
+<mapper namespace="com.example.studyapp.mapper.TaskInfoMapper">
   <resultMap id="BaseResultMap" type="com.example.studyapp.entity_gen.TaskInfo">
     <!--
       WARNING - @mbg.generated

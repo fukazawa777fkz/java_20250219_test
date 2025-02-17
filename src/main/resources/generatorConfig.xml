@@ -13,7 +13,7 @@
 
     <!-- entity -->
     <javaModelGenerator 
-        targetPackage="com.example.studyapp.entity_gen" 
+        targetPackage="com.example.studyapp.entity" 
         targetProject="src\main\java">
         <property name="enableSubPackages" value="true" />
         <property name="trimStrings" value="true" />
@@ -21,7 +21,7 @@
 
     <!-- xml -->
     <sqlMapGenerator 
-        targetPackage="resources.mapper_gen" 
+        targetPackage="resources.mapper" 
         targetProject="src\main">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
@@ -29,7 +29,7 @@
     <!-- if -->
     <javaClientGenerator 
         type="XMLMAPPER" 
-        targetPackage="com.example.studyapp.mapper_gen" 
+        targetPackage="com.example.studyapp.mapper" 
         targetProject="src\main\java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
