@@ -51,6 +51,8 @@ public class LoginControllerTest {
                .param("userPassword", "password"))
                .andExpect(status().is3xxRedirection())
                .andExpect(redirectedUrl("/taskList/" + testUser.getUserId()));
+        
+        verify(loginService, times(1)).findByUserName("testUser");
     }
 
     @Test
@@ -61,6 +63,8 @@ public class LoginControllerTest {
                .andExpect(status().isOk())
                .andExpect(view().name("login"))
                .andExpect(model().hasErrors());
+        
+        verify(loginService, never()).findByUserName(any());
     }
 
     @Test
@@ -73,6 +77,8 @@ public class LoginControllerTest {
                .andExpect(status().isOk())
                .andExpect(view().name("login"))
                .andExpect(model().attribute("errorMessage", "⚠︎ ユーザー名またはパスワードに誤りがあります。"));
+        
+        verify(loginService, times(1)).findByUserName("testUser");
     }
 
     @Test
@@ -85,6 +91,8 @@ public class LoginControllerTest {
                .andExpect(status().isOk())
                .andExpect(view().name("login"))
                .andExpect(model().attribute("errorMessage", "⚠︎ ユーザー名またはパスワードに誤りがあります。"));
+        
+        verify(loginService, times(1)).findByUserName("testUser");
     }
 
     @Test
