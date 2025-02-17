@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+import java.util.Map;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -52,6 +54,12 @@ class RegisterServiceImplTest {
         ArgumentCaptor<UserInfoExample> captor = ArgumentCaptor.forClass(UserInfoExample.class);
         @Test
         void 既存ユーザーの場合_trueを返す() {
+            // 期待値の条件をMapで定義
+            Map<String, String> expectedCriteria = Map.of(
+                "condition", "user_name =",
+                "value", "testUser"
+            );
+
             // 準備
             String userName = "testUser";
             when(userInfoMapper.countByExample(any(UserInfoExample.class))).thenReturn(1L);
@@ -62,12 +70,23 @@ class RegisterServiceImplTest {
             // 検証
             assertThat(result).isTrue();
             verify(userInfoMapper, times(1)).countByExample(captor.capture());
+            // Mapを使用した検証
             UserInfoExample capturedExample = captor.getValue();
-            assertThat(capturedExample.createCriteria().getCriteria().get(0).getValue()).isEqualTo(userName);
+            assertThat(capturedExample.getOredCriteria().get(0).getCriteria().get(0))
+                .satisfies(criteria -> {
+                    assertThat(criteria.getCondition()).isEqualTo(expectedCriteria.get("condition"));
+                    assertThat(criteria.getValue()).isEqualTo(expectedCriteria.get("value"));
+            });
         }
 
         @Test
         void 新規ユーザーの場合_falseを返す() {
+            // 期待値の条件をMapで定義
+            Map<String, String> expectedCriteria = Map.of(
+                "condition", "user_name =",
+                "value", "newUser"
+            );
+
             // 準備
             String userName = "newUser";
             when(userInfoMapper.countByExample(any(UserInfoExample.class))).thenReturn(0L);
@@ -78,8 +97,13 @@ class RegisterServiceImplTest {
             // 検証
             assertThat(result).isFalse();
             verify(userInfoMapper, times(1)).countByExample(captor.capture());
+            // Mapを使用した検証
             UserInfoExample capturedExample = captor.getValue();
-            assertThat(capturedExample.createCriteria().getCriteria().get(0).getValue()).isEqualTo(userName);
+            assertThat(capturedExample.getOredCriteria().get(0).getCriteria().get(0))
+                .satisfies(criteria -> {
+                    assertThat(criteria.getCondition()).isEqualTo(expectedCriteria.get("condition"));
+                    assertThat(criteria.getValue()).isEqualTo(expectedCriteria.get("value"));
+            });
         }
     }
 
