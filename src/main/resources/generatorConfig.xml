@@ -27,7 +27,7 @@
     <!-- entity -->
     <javaModelGenerator 
         targetPackage="com.example.studyapp.entity" 
-        targetProject="src\main\java">
+        targetProject="gensrc\main\java">
         <property name="enableSubPackages" value="true" />
         <property name="trimStrings" value="true" />
     </javaModelGenerator>
@@ -43,7 +43,7 @@
     <javaClientGenerator 
         type="XMLMAPPER" 
         targetPackage="com.example.studyapp.mapper" 
-        targetProject="src\main\java">
+        targetProject="gensrc\main\java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
