@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <!-- MySQLのJDBCドライバーの場所を指定 -->
+  <classPathEntry location="C:\Users\mfuka\.m2\repository\mysql\mysql-connector-java\8.0.25\mysql-connector-java-8.0.25.jar"/>
+  
+  <!-- コンテキスト設定: MyBatis3の機能を使用 -->
+  <context id="local" targetRuntime="MyBatis3">
+
+    <!-- 生成されるファイルから日付情報を除外 -->
+    <property name="suppressDate" value="true" />
+    <!-- MapperインターフェースにSpringの@Mapperアノテーションを追加 -->
+    <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
+
+    <!-- 生成されるコードのコメント設定 -->
+    <commentGenerator>
+        <!-- 日付情報を除外 -->
+        <property name="suppressDate" value="true" />
+        <!-- すべてのコメントを抑制する場合はこちらを有効化 -->
+        <!-- <property name="suppressAllComments" value="true" /> -->
+    </commentGenerator>
+
+    <!-- データベース接続設定 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/studyapp?useSSL=false&amp;nullCatalogMeansCurrent=true"
+        userId="root"
+        password="root">
+    </jdbcConnection>
+
+    <!-- エンティティクラスの生成設定 -->
+    <javaModelGenerator 
+        targetPackage="com.example.studyapp.entity" 
+        targetProject="gensrc\main\java">
+        <property name="enableSubPackages" value="true" />
+        <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <!-- SQLマッパーXMLファイルの生成設定 -->
+    <sqlMapGenerator 
+        targetPackage="resources.mapper" 
+        targetProject="src\main">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <!-- Mapperインターフェースの生成設定 -->
+    <javaClientGenerator 
+        type="XMLMAPPER" 
+        targetPackage="com.example.studyapp.mapper" 
+        targetProject="gensrc\main\java">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <!-- 生成対象のテーブル設定 -->
+    <table schema="studyapp" tableName="task_info">
+        <!-- カラム名をキャメルケースに変換 -->
+      <property name="useActualColumnNames" value="false" />
+        <!-- 自動採番カラムの設定 -->
+      <generatedKey column="task_id" sqlStatement="MYSQL" identity="true" />
+    </table>
+    <table schema="studyapp" tableName="user_info">
+        <!-- カラム名をキャメルケースに変換 -->
+      <property name="useActualColumnNames" value="false" />
+    </table>
+
+  </context>
+</generatorConfiguration>

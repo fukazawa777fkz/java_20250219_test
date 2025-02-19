@@ -25,3 +25,31 @@ table{
     width: 10%;
     padding: 10px 0;
   }
+
+  .error-message {
+    color: red;
+  }
+
+  .form-group {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.label-column {
+    text-align: right;
+    padding-right: 10px;
+    width: 100px;
+}
+
+.input-column {
+    text-align: left;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 2px;
+}
